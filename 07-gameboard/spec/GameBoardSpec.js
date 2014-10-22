@@ -56,3 +56,44 @@
     colisionado con objetos de cierto tipo, no con todos los objetos.
 
 */
+describe("Game Board", function(){
+	
+	
+	
+	it("GameBoard.add()", function(){
+		var board = new GameBoard();
+		var dummy = {};
+		spyOn(board, "add").andCallThrough();
+		board.add(dummy);
+
+		expect(board).toBe(dummy.board);
+		
+		
+	});
+	
+	it("Procesos de borrado (reset+remove+finally)", function(){
+		var board = new GameBoard();
+		var dummy = {};
+		var dummy2 = {};
+		var dummy3 = {};
+		spyOn(board, "add").andCallThrough();
+		spyOn(board, "remove").andCallThrough();
+		spyOn(board, "resetRemoved").andCallThrough();
+		spyOn(board, "finalizeRemoved").andCallThrough();
+
+		board.add(dummy);
+		board.add(dummy2);
+		board.add(dummy3);
+	
+		board.resetRemoved();
+		board.remove(dummy2);
+		board.finalizeRemoved();
+
+		expect(board.objects.length).toBe(2);
+		
+		
+	});
+	
+	
+});
+
