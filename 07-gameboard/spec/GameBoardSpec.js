@@ -94,6 +94,18 @@ describe("Game Board", function(){
 		
 	});
 	
+	it("Overlap", function(){
+		var board = new GameBoard();
+		var dummy = {x: 100, y: 200, h: 10, w: 20};
+		var dummy2 = {x: 10, y: 20, h: 10, w: 20};
+		spyOn(board, "overlap").andCallThrough();
+
+		
+		expect(board.overlap(dummy,dummy2)).toBe(false);
+		expect(board.overlap(dummy,dummy)).toBe(true);
+		
+	});
+	
 	
 });
 
