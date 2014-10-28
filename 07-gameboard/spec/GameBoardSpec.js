@@ -106,6 +106,20 @@ describe("Game Board", function(){
 		
 	});
 	
+	it("Iterate", function(){
+		var board = new GameBoard();
+		var dummy = {func: function (){}};
+		spyOn(dummy, 'func');
+
+		board.add(dummy);
+		board.iterate('func', 10);
+
+		expect(dummy.func).toHaveBeenCalled();
+		expect(dummy.func).toHaveBeenCalledWith(10);
+		
+	});
+	
+
 	
 });
 

@@ -107,7 +107,35 @@ describe("Game Board", function(){
 		
 	});
 	
+	it("Iterate", function(){
+		var board = new GameBoard();
+		var dummy = {func: function (){}};
+		spyOn(dummy, 'func');
+
+		board.add(dummy);
+		board.iterate('func', 10);
+
+		expect(dummy.func).toHaveBeenCalled();
+		expect(dummy.func).toHaveBeenCalledWith(10);
+		
+	});
+	
+	it("Detect", function(){
+		
+		var board = new GameBoard();
+		var dummy = {x: 100, y: 200, h: 10, w: 20};
+		var dummy2 = {x: 10, y: 20, h: 10, w: 20}
+		
+		function tieneCien(){
+			return this.x == 100;
+		}
+		board.add(dummy);
+		board.add(dummy2);
+
+		expect(board.detect(tieneCien)).toBe(dummy);
+
+	});
+	
 	
 });
-
 
