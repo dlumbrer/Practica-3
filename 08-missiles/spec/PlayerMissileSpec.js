@@ -70,4 +70,21 @@ describe("Missile", function(){
 	
 	});	
 	
+	it("Mantener tecla pulsada", function(){
+		var board = new GameBoard();
+		var nave = new PlayerShip();
+		board.add(nave);
+		Game.keys['fire'] = true;
+		nave.step(1);
+		nave.step(1);
+		expect(board.objects.length).toBe(3);
+		Game.keys['fire'] = false;
+		nave.step(1);
+		Game.keys['fire'] = true;
+		nave.step(1);
+		expect(board.objects.length).toBe(5);
+		
+		
+	});
+	
 });
